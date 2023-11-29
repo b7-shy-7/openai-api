@@ -9,7 +9,7 @@ from langdetect import detect
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-st.title("胖胖 Bot")
+st.title("胖胖 GPT")
 
 # Initialize chat history
 if "messages" not in st.session_state:
