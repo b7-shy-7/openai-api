@@ -2,10 +2,6 @@ import os
 import openai
 from openai import OpenAI
 
-# openai.api_key = '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'
-
-# from openai import OpenAI
-# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI()
 history = ""
