@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+    <style>
+        #chatbox {
+            height: 500px;
+            width: 500px;
+            border: 1px solid black;
+            overflow: auto;
+        }
+        #userInput {
+            width: 1000px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="chatbox"></div>
+    <input id="userInput" type="text" />
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function appendMessage(message) {
+            var chatbox = document.getElementById('chatbox');
+
+            // Create a new div for the message
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+
+            // Append the message to the chatbox
+            chatbox.appendChild(messageDiv);
+
+            // Scroll to the bottom of the chatbox
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function sendMessage() {
+            var input = document.getElementById('userInput');
+            appendMessage('You: ' + input.value);
+
+            $.post('/message', {message: input.value}, function(response) {
+                appendMessage('Assistant: ' + response);
+            });
+
+            // Clear the input
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+
+<form id="myForm">
+  <input type="text" id="message" name="message">
+  <input type="submit" value="Submit">
+</form>
+
+<div id="result"></div>
+
+<script>
+document.getElementById('myForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var message = document.getElementById('message').value;
+
+  fetch('/message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'message=' + encodeURIComponent(message)
+  }).then(function(response) {
+    var reader = response.body.getReader();
+    var decoder = new TextDecoder();
+
+    reader.read().then(function processText({ done, value }) {
+      if (done) {
+        return;
+      }
+
+      document.getElementById('result').innerHTML += decoder.decode(value) + '<br>';
+
+      return reader.read().then(processText);
+    });
+  });
+});
+</script>
+
+</body>
+</html> -->
