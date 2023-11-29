@@ -32,7 +32,7 @@ if prompt := st.chat_input("What is up?"):
             model="gpt-3.5-turbo-0301",
             # response_format={ 'type': "json_object"},
             messages=[
-                {"role": "system", "content": "你叫胖胖"},
+                {"role": "system", "content": "你的名字叫胖胖"},
                 # {"role": "user", "content": message},
                 # {"role": "assistant", "content": history},
                 {"role": "user", "content": prompt}
