@@ -7,7 +7,7 @@ from langdetect import detect
 
 # os.environ.get("OPENAI_API_KEY")
 
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.title("胖胖 Bot")
 
